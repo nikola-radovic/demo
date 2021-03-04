@@ -1,0 +1,24 @@
+@import "../../../color-palette";
+
+.pmd-tab-item {
+  margin-right: 1rem;
+
+  &.active {
+    @include tenant-aware('color', 'tenantColor');
+  }
+
+  &.pmd-tab-item__divider {
+    padding-right: 1rem;
+    border-right: 1.5px solid $borderAndIconColor;
+  }
+
+  &.pmd-tab-item__divider:hover {
+    border-color: $borderAndIconColor !important;
+  }
+
+  &.pmd-tab-item__disabled,
+  &.pmd-tab-item__disabled:hover {
+    color: $disabledColor !important;
+    cursor: not-allowed !important;
+  }
+}

@@ -1,0 +1,33 @@
+@import "../color-palette";
+
+.pmd-pagination {
+  .pmd-btn--plain-text {
+    &:hover {
+      @include tenant-aware('background-color', 'tenantDarkColor');
+
+      .pmd-typography {
+        color: #FFF;
+      }
+    }
+
+    &:disabled {
+      background-color: transparent;
+
+      .pmd-typography {
+        color: $disabledColor;
+      }
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &.active {
+      @include tenant-aware('background-color', 'tenantColor');
+
+      .pmd-typography {
+        color: #FFF;
+      }
+    }
+  }
+}

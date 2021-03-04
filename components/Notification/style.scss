@@ -1,0 +1,176 @@
+#pmd-notification-root {
+  position: fixed;
+  bottom: auto;
+  z-index: 5;
+  min-width: 15rem;
+  max-width: 18rem;
+
+  @media screen and (min-width: 992px) {
+    max-width: 22rem;
+  }
+
+  .pmd-notification {
+    position: relative;
+    padding: 1rem 1.5rem;
+    margin-left: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+    animation-duration: 0.3s;
+
+    .pmd-notification__content {
+      .pmd-notification__header {
+        display: flex;
+        align-items: center;
+        padding-right: 1.5rem;
+
+        #pmd-notification__status-icon {
+          display: inline-block;
+          height: 1.5rem;
+          margin-right: 0.5rem;
+
+          svg {
+            font-size: 1.5rem;
+          }
+        }
+
+        .pmd-notification__message {
+          display: inline-block;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-weight: 600;
+          font-size: 1.125rem;
+          line-height: 1.375rem;
+          letter-spacing: 0.2px;
+        }
+
+        & ~ .pmd-notification__description {
+          margin-top: 0.5rem;
+        }
+      }
+
+      #pmd-notification__close-icon {
+        position: absolute;
+        top: 1rem;
+        right: 1.375rem;
+        cursor: pointer;
+
+        svg {
+          color: rgba(0,0,0,.35);
+        }
+      }
+    }
+
+    &.pmd-notification--status {
+      .pmd-notification__content {
+        .pmd-notification__description {
+          padding-left: 2rem;
+        }
+      }
+    }
+
+    &.pmd-notification--success {
+      .pmd-notification__content {
+        #pmd-notification__status-icon {
+          svg {
+            color: #52c41a;
+          }
+        }
+      }
+    }
+
+    &.pmd-notification--info {
+      .pmd-notification__content {
+        #pmd-notification__status-icon {
+          svg {
+            color: #1890ff;
+          }
+        }
+      }
+    }
+
+    &.pmd-notification--warning {
+      .pmd-notification__content {
+        #pmd-notification__status-icon {
+          svg {
+            color: #faad14;
+          }
+        }
+      }
+    }
+
+    &.pmd-notification--danger {
+      .pmd-notification__content {
+        #pmd-notification__status-icon {
+          svg {
+            color: #ff4d4f;
+          }
+        }
+      }
+    }
+  }
+
+  &.pmd-notification-root--right {
+    top: 1.5rem;
+    right: 0;
+    margin-right: 1rem;
+
+    @media screen and (min-width: 992px) {
+      margin-right: 1.5rem;
+    }
+
+    .pmd-notification {
+      animation-name: slide-in-right;
+    }
+  }
+
+  &.pmd-notification-root--center {
+    top: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
+
+    .pmd-notification {
+      animation-name: slide-in-center;
+    }
+  }
+
+  &.pmd-notification-root--unmount {
+    .pmd-notification {
+      animation-name: slide-out;
+    }
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    right: -15rem;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+@keyframes slide-in-center {
+  0% {
+    opacity: 0;
+    top: -5rem;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  100% {
+    opacity: 0;
+    top: -5rem;
+  }
+}

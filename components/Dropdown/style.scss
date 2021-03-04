@@ -1,0 +1,67 @@
+@import "../color-palette";
+
+.pmd-dropdown {
+  display: inline-flex;
+  width: auto;
+  max-width: 10rem;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    & > .pmd-typography,
+    svg {
+      @include tenant-aware('color', 'tenantColor');
+    }
+
+    .pmd-dropdown__content {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .pmd-typography {
+    margin-right: 1rem;
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-40%);
+    transition: color 0.3s;
+  }
+
+  .pmd-dropdown__content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: fit-content;
+    min-width: 100%;
+    max-width: calc(100% + 3.125rem);
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    .pmd-dropdown__content-item {
+      display: block;
+      text-decoration: none;
+      padding: 0.5rem;
+
+      &:hover {
+        background-color: $sidebarBackgroundColor;
+      }
+
+      &.pmd-dropdown__content-item--active {
+        @include tenant-aware('background-color', 'tenantColor');
+
+        .pmd-typography {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

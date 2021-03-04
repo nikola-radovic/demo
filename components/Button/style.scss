@@ -1,0 +1,63 @@
+@import "../color-palette";
+
+.pmd-btn {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 1.5rem;
+  @include tenant-aware('background-color', 'tenantColor');
+  border: none;
+  transition: background-color 0.4s;
+
+  &:hover {
+    @include tenant-aware('background-color', 'tenantDarkColor');
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $disabledColor;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $disabledColor;
+    }
+  }
+
+  &.pmd-btn--auto-width {
+    width: auto;
+  }
+
+  &.pmd-btn--plain-text {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+
+    .pmd-typography {
+      @include tenant-aware('color', 'tenantColor');
+    }
+
+    &:hover {
+      @include tenant-aware('background-color', 'tenantColor');
+
+      .pmd-typography {
+        color: #FFF;
+      }
+    }
+
+    &:disabled {
+      background-color: transparent;
+
+      .pmd-typography {
+        color: $disabledColor;
+      }
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .pmd-typography {
+    color: #FFF;
+  }
+}

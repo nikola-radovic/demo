@@ -1,0 +1,104 @@
+@import "../../../color-palette";
+
+.pmd-accordion-item {
+  border-top: 1px solid $borderAndIconColor;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    width: 0;
+    border-bottom: 1.25px solid;
+    @include tenant-aware('border-bottom-color', 'tenantColor');
+    transition: width 0.3s;
+  }
+
+  &::before {
+    left: 50%;
+  }
+
+  &::after {
+    right: 50%;
+  }
+
+  &:last-of-type {
+    border-bottom: 1px solid $borderAndIconColor;
+  }
+
+  .pmd-accordion-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    cursor: pointer;
+
+    .pmd-typography {
+      max-width: 95%;
+    }
+  }
+
+  .pmd-accordion-item__content {
+    height: 0;
+    overflow-y: hidden;
+  }
+
+  &:hover {
+    .pmd-accordion-item__header {
+      position: relative;
+
+      svg {
+        position: absolute;
+        right: 0;
+        @include tenant-aware('color', 'tenantColor');
+        animation-name: slideUpDown;
+        animation-duration: 0.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+    }
+  }
+
+  &.pmd-accordion-item--expanded {
+    background-color: $sidebarBackgroundColor;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-top: none;
+
+    &::before, &::after {
+      width: 50%;
+      top: 0;
+    }
+
+    .pmd-accordion-item__header {
+      svg {
+        animation: none;
+        @include tenant-aware('color', 'tenantColor');
+        transform: rotate(180deg);
+      }
+    }
+
+    .pmd-accordion-item__content {
+      height: fit-content;
+      padding-bottom: 1.5rem;
+    }
+  }
+}
+
+@keyframes slideUpDown {
+  0% {
+    top: 35%;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 45%;
+    opacity: 0;
+  }
+}
